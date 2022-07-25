@@ -346,7 +346,7 @@ public class PlayActivity extends BaseActivity {
                 mVodPlayerCfg.put("sc", Hawk.get(HawkConfig.PLAY_SCALE, 0));
             }
             if (!mVodPlayerCfg.has("sp")) {
-                mVodPlayerCfg.put("sp", 1.0f);
+                mVodPlayerCfg.put("sp", 0);
             }
             if (!mVodPlayerCfg.has("st")) {
                 mVodPlayerCfg.put("st", 0);
