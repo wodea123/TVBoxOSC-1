@@ -470,7 +470,7 @@ public class PlayActivity extends BaseActivity {
     boolean autoRetry() {
         if (autoRetryCount < 3) {
             autoRetryCount++;
-            play(false);
+            play();
             return true;
         } else {
             autoRetryCount = 0;
@@ -478,7 +478,7 @@ public class PlayActivity extends BaseActivity {
         }
     }
 
-    public void play(boolean reset) {
+    public void play() {
         VodInfo.VodSeries vs = mVodInfo.seriesMap.get(mVodInfo.playFlag).get(mVodInfo.playIndex);
         EventBus.getDefault().post(new RefreshEvent(RefreshEvent.TYPE_REFRESH, mVodInfo.playIndex));
         setTip("正在获取播放信息", true, false);
@@ -487,7 +487,6 @@ public class PlayActivity extends BaseActivity {
 
         playUrl(null, null);
         String progressKey = mVodInfo.sourceKey + mVodInfo.id + mVodInfo.playFlag + mVodInfo.playIndex;
-        if (reset) CacheManager.delete(MD5.string2MD5(progressKey), 0);
         if (Thunder.play(vs.url, new Thunder.ThunderCallback() {
             @Override
             public void status(int code, String info) {
